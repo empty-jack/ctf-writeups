@@ -3,7 +3,7 @@
 ## Description
 
 Web site store.
-Users could add items to card. Items stores in cookie in following formag:
+Users could add items to card. Items stores in cookie in following format:
 ```
 cart=eyJpdGVtcyI6eyIwIjp7Im5hbWUiOiJEcmFjYWVuYSB0cmlmYXNjaWF0YSIsInByaWNlIjoxNC45OSwiY291bnQiOjF9fX0%3D
 ```
